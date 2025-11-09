@@ -1,0 +1,327 @@
+/* ========================
+         الثيمات (داكن / فاتح)
+         كل الألوان من خلال متغيّرات
+      ========================= */
+:root,
+:root[data-theme="dark"] {
+  --bg: #0f172a; /* خلفية عامة */
+  --bg-grad: radial-gradient(
+    1200px 800px at 80% -200px,
+    rgba(34, 197, 94, 0.15),
+    transparent 60%
+  );
+  --panel: #0b1220; /* بطاقات/حقول */
+  --panel-2: #0a0f1a; /* طبقة ثانية */
+  --muted: #94a3b8; /* نص خافت */
+  --text: #e5e7eb; /* نص أساسي */
+  --primary: #22c55e; /* زر أساسي */
+  --primary-600: #16a34a;
+  --danger: #ef4444;
+  --border: #1f2937;
+  --accent: #0ea5e9;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  --radius: 18px;
+}
+
+:root[data-theme="light"] {
+  --bg: #f8fafc;
+  --bg-grad: radial-gradient(
+    1200px 800px at 80% -200px,
+    rgba(34, 197, 94, 0.08),
+    transparent 60%
+  );
+  --panel: #ffffff;
+  --panel-2: #f9fafb;
+  --muted: #475569;
+  --text: #1e293b;
+  --primary: #22c55e;
+  --primary-600: #16a34a;
+  --danger: #ef4444;
+  --border: #e2e8f0;
+  --accent: #0ea5e9;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter,
+    "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
+  background: var(--bg-grad), var(--bg);
+  color: var(--text);
+}
+
+/* زر تبديل الثيم */
+#themeToggle {
+  position: fixed;
+  top: 12px;
+  inset-inline-end: 12px;
+  z-index: 10000;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100svh;
+}
+
+aside {
+  border-inline-start: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  padding: 20px 16px;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: conic-gradient(
+    from 200deg,
+    var(--primary),
+    #10b981,
+    #14b8a6,
+    #60a5fa
+  );
+  box-shadow: var(--shadow);
+  border: 1px solid var(--accent);
+}
+.brand h1 {
+  font-size: 18px;
+  margin: 0;
+  color: var(--text);
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 10px;
+}
+.search input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  outline: none;
+  font-size: 14px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--muted);
+  border: 1px solid transparent;
+}
+.nav-btn[data-active="true"] {
+  color: var(--text);
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border-color: var(--border);
+}
+.nav-btn:hover {
+  background: var(--panel);
+  color: var(--text);
+  border-color: var(--border);
+}
+.badge {
+  margin-inline-start: auto;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+main {
+  padding: 24px;
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+  display: grid;
+  gap: 22px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--text), var(--muted));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.grid {
+  display: grid;
+  gap: 14px;
+}
+.grid.cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid.cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  aside {
+    position: static;
+    height: auto;
+  }
+  .grid.cols-2,
+  .grid.cols-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.input,
+textarea,
+select {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: var(--text);
+  outline: none;
+}
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.btn {
+  all: unset;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+}
+.btn.primary {
+  background: var(--primary);
+  border-color: var(--primary-600);
+  color: #052e16;
+}
+.btn.primary:hover {
+  background: var(--primary-600);
+}
+.btn.ghost:hover {
+  background: var(--panel-2);
+}
+
+.tab {
+  display: none;
+}
+.tab[aria-hidden="false"] {
+  display: block;
+  animation: fade 0.25s ease;
+}
+@keyframes fade {
+  from {
+    opacity: 0.4;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.toast {
+  position: fixed;
+  inset-inline: 0;
+  top: 14px;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+}
+.toast > div {
+  pointer-events: auto;
+  background: color-mix(in srgb, var(--primary) 18%, var(--panel) 82%);
+  color: color-mix(in srgb, var(--text) 80%, var(--primary) 20%);
+  border: 1px solid var(--primary-600);
+  padding: 12px 14px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  padding: 10px 0 20px;
+}
+code.inline {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 8px;
+  color: var(--text);
+}
