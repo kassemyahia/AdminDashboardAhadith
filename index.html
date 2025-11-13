@@ -33,8 +33,11 @@
           <button class="nav-btn" data-tab="tab-books">
             📚 إضافة كتاب <span class="badge">B</span>
           </button>
-          <button class="nav-btn" data-tab="tab-narrators">
+          <button class="nav-btn" data-tab="tab-rawi">
             👳 إضافة محدث/راوي <span class="badge">N</span>
+          </button>
+          <button class="nav-btn" data-tab="tab-muhaddith">
+            👳 إضافة محدث <span class="badge">N</span>
           </button>
           <button class="nav-btn" data-tab="tab-rulings">
             ⚖️ إضافة حكم حديث <span class="badge">R</span>
@@ -70,14 +73,14 @@
                   placeholder="أدخل نص الحديث كاملاً"
                 ></textarea>
                 <div class="hint">احرص على دقة النص</div>
-              </div>
+              <!-- </div>
               <div class="field">
                 <label>النص بدون تشكيل (اختياري)</label>
                 <textarea
                   name="textwithoutdiacritics"
                   placeholder="إن وجد"
                 ></textarea>
-              </div>
+              </div> -->
 
               <div class="field">
                 <label>نوع الحديث</label>
@@ -85,8 +88,8 @@
                   <option value="">— اختر —</option>
                   <option value="مرفوع">مرفوع</option>
                   <option value="قدسي">قدسي</option>
-                  <option value="حسن">حسن</option>
-                  <option value="ضعيف">ضعيف</option>
+                  <option value="حسن">موقوف</option>
+                  <option value="ضعيف">آثر</option>
                 </select>
               </div>
 
@@ -124,7 +127,7 @@
               </div>
 
               <div class="field">
-                <label>رأي المحدّث (ruling_of_muhaddith_id)</label>
+                <label>حكم المحدّث (ruling_of_muhaddith_id)</label>
                 <input
                   class="input"
                   type="number"
@@ -166,7 +169,7 @@
                   placeholder="قيمة عددية"
                 />
               </div>
-
+<!-- 
               <div class="field">
                 <label>Admin (user_id)</label>
                 <input
@@ -176,7 +179,19 @@
                   min="1"
                   placeholder="ID حساب المدير"
                 />
+              </div> -->
+
+        <div class="field">
+                <label>تسلسل السند</label>
+                <input
+                  class="input"
+                  name="sanad"
+                  required
+                />
               </div>
+
+
+
 
               <div class="actions">
                 <button class="btn primary" type="submit">حفظ الحديث</button>
@@ -211,7 +226,7 @@
                   name="muhaddith"
                   placeholder="مثال: الإمام البخاري"
                 />
-              </div>
+              <!-- </div>
               <div class="field">
                 <label>عدد الأحاديث</label>
                 <input
@@ -221,7 +236,7 @@
                   min="0"
                   value="0"
                 />
-              </div>
+              </div> -->
               <div class="actions">
                 <button class="btn primary" type="submit">حفظ الكتاب</button>
                 <button class="btn ghost" type="reset">تفريغ</button>
@@ -231,9 +246,51 @@
         </section>
 
         <!-- تبويب: إضافة محدث/راوي -->
-        <section id="tab-narrators" class="tab" aria-hidden="true">
+        <section id="tab-muhaddith" class="tab" aria-hidden="true">
           <div class="card grid">
-            <h3>👳 إضافة محدث/راوي</h3>
+            <h3>👳 إضافة محدث</h3>
+            <form
+              id="form-narrator"
+              class="grid cols-2"
+              onsubmit="handleSubmit(event, 'narrators')"
+            >
+              <div class="field">
+                <label>الاسم</label>
+                <input
+                  class="input"
+                  name="name"
+                  required
+                  placeholder="اسم المحدث"
+                />
+              </div>
+              <div class="field">
+                <label>الجنس</label>
+                <select name="gender" class="input">
+                  <option value="">— اختر —</option>
+                  <option value="M">ذكر</option>
+                  <option value="F">أنثى</option>
+                </select>
+              <!-- </div>
+              <div class="field">
+                <label>نوع الراوي</label>
+                <select name="narrator_type" class="input">
+                  <option value="">— اختر —</option>
+                  <option value="Muhaddith">محدث</option>
+                  <option value="Rawi">راوي</option>
+                </select>
+              </div> -->
+              <div class="actions">
+                <button class="btn primary" type="submit">حفظ المحدث</button>
+                <button class="btn ghost" type="reset">تفريغ</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section id="tab-rawi" class="tab" aria-hidden="true">
+          <div class="card grid">
+
+            <h3>👳 إضافة راوي</h3>
             <form
               id="form-narrator"
               class="grid cols-2"
@@ -255,15 +312,7 @@
                   <option value="M">ذكر</option>
                   <option value="F">أنثى</option>
                 </select>
-              </div>
-              <div class="field">
-                <label>نوع الراوي</label>
-                <select name="narrator_type" class="input">
-                  <option value="">— اختر —</option>
-                  <option value="Muhaddith">محدث</option>
-                  <option value="Rawi">راوي</option>
-                </select>
-              </div>
+        
               <div class="actions">
                 <button class="btn primary" type="submit">حفظ الراوي</button>
                 <button class="btn ghost" type="reset">تفريغ</button>
@@ -358,4 +407,3 @@
   </body>
   <script src="main.js"></script>
 </html>
-```

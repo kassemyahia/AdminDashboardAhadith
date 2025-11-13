@@ -1,4 +1,4 @@
-// ===== تبديل الثيم =====
+// ===== تبديل الثيم مع حفظ الاختيار =====
 const root = document.documentElement;
 const toggleBtn = document.getElementById("themeToggle");
 
@@ -22,8 +22,8 @@ function updateToggleText() {
   toggleBtn.textContent = isLight ? "الوضع الليلي 🌙" : "الوضع الفاتح 🌞";
 }
 
-// ===== إرسال الطلبات =====
-const baseURL = "https://apibykassem.onrender.com/api";
+// ====== بقية وظائف اللوحة ======
+const baseURL = "http://127.0.0.1:8000/api";
 
 async function request(method, path, body) {
   const opts = { method, headers: { Accept: "application/json" } };
@@ -50,6 +50,8 @@ async function handleSubmit(e, resource) {
     await request("POST", `/${resource}`, data);
     toast("✅ تم الحفظ بنجاح");
     f.reset();
+    if (resource === "hadiths") loadHadiths();
+    if (resource === "books") loadBooks();
   } catch (err) {
     alert("❌ فشل الحفظ:\n" + err.message);
   }
@@ -82,4 +84,43 @@ document.getElementById("nav").addEventListener("click", (e) => {
     .forEach((t) =>
       t.setAttribute("aria-hidden", t.id === id ? "false" : "true")
     );
+});
+
+async function loadBooks() {
+  const sel = document.getElementById("bookSelect");
+  if (!sel) return;
+  const books = await request("GET", "/books");
+  sel.innerHTML = '<option value="">— اختر كتاب —</option>';
+  books.forEach((b) => {
+    const o = document.createElement("option");
+    o.value = b.id;
+    o.textContent = b.book_name;
+    sel.appendChild(o);
+  });
+}
+
+async function loadHadiths() {
+  const box = document.getElementById("hadith-list");
+  if (!box) return;
+  box.innerHTML = "...";
+  try {
+    const list = await request("GET", "/hadiths");
+    box.innerHTML = list.length
+      ? list
+          .map(
+            (h) =>
+              `<div class='card'><div><b>${h.hadith_type || ""}</b> - ${
+                h.hadith_text || ""
+              }</div></div>`
+          )
+          .join("")
+      : '<div class="hint">لا توجد أحاديث.</div>';
+  } catch (e) {
+    box.innerHTML = "خطأ في التحميل";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  loadBooks();
+  loadHadiths();
 });
