@@ -34,7 +34,7 @@
             📚 إضافة كتاب <span class="badge">B</span>
           </button>
           <button class="nav-btn" data-tab="tab-rawi">
-            👳 إضافة محدث/راوي <span class="badge">N</span>
+            👳 إضافة راوي <span class="badge">N</span>
           </button>
           <button class="nav-btn" data-tab="tab-muhaddith">
             👳 إضافة محدث <span class="badge">N</span>
@@ -190,9 +190,6 @@
                 />
               </div>
 
-
-
-
               <div class="actions">
                 <button class="btn primary" type="submit">حفظ الحديث</button>
                 <button class="btn ghost" type="reset">تفريغ</button>
@@ -252,7 +249,7 @@
             <form
               id="form-narrator"
               class="grid cols-2"
-              onsubmit="handleSubmit(event, 'narrators')"
+              onsubmit="handleSubmit(event, 'muhaddiths')"
             >
               <div class="field">
                 <label>الاسم</label>
@@ -294,7 +291,7 @@
             <form
               id="form-narrator"
               class="grid cols-2"
-              onsubmit="handleSubmit(event, 'narrators')"
+              onsubmit="handleSubmit(event, 'rawis')"
             >
               <div class="field">
                 <label>الاسم</label>
@@ -313,6 +310,15 @@
                   <option value="F">أنثى</option>
                 </select>
         
+        <div class="field">
+                <label>حال الراوي</label>
+                <input
+                  class="input"
+                  name="halalrawi"
+                  required
+                />
+              </div>
+
               <div class="actions">
                 <button class="btn primary" type="submit">حفظ الراوي</button>
                 <button class="btn ghost" type="reset">تفريغ</button>
