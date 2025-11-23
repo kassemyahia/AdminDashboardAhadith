@@ -48,6 +48,9 @@
           <button class="nav-btn" data-tab="tab-explainings">
             📝 إضافة شرح حديث <span class="badge">E</span>
           </button>
+          <button class="nav-btn" data-tab="tab-fake-hadiths">
+            ⚠️ إضافة حديث منتشر لا يصح <span class="badge">E</span>
+          </button>
         </nav>
       </aside>
 
@@ -403,6 +406,65 @@
             </form>
           </div>
         </section>
+
+        <!-- تبويب: إضافة حديث منتشر لا يصح -->
+<section id="tab-fake-hadiths" class="tab" aria-hidden="true">
+  <div class="card grid">
+    <h3>⚠️ إضافة حديث منتشر لا يصح</h3>
+
+    <form
+      id="form-fake-hadith"
+      class="grid cols-2"
+      onsubmit="handleSubmit(event, 'fakehadiths')"
+    >
+
+      <!-- نص الحديث المنتشر -->
+      <div class="field">
+        <label>نص الحديث المنتشر</label>
+        <textarea
+          name="FakeHadithText"
+          required
+          placeholder="أدخل نص الحديث غير الصحيح"
+        ></textarea>
+        <div class="hint">هذا النص سيتم نشره على أنه حديث غير صحيح.</div>
+      </div>
+
+      <!-- الحديث الصحيح البديل -->
+      <div class="field">
+        <label>الحديث الصحيح البديل (SubValid)</label>
+        <input
+          class="input"
+          type="number"
+          name="SubValid"
+          min="1"
+          placeholder="ID الحديث الصحيح البديل"
+          required
+        />
+      </div>
+
+      <!-- حكم الحديث -->
+      <div class="field">
+        <label>حكم الحديث (Ruling)</label>
+        <input
+          class="input"
+          type="number"
+          name="Ruling"
+          min="1"
+          placeholder="ID حكم الحديث"
+          required
+        />
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" type="submit">حفظ الحديث</button>
+        <button class="btn ghost" type="reset">تفريغ</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
       </main>
     </div>
 
