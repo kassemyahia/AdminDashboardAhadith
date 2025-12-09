@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>لوحة إدارة الأحاديث</title>
+  </head>
+
+  <body>
+    <!-- زر التبديل -->
+    <button id="themeToggle">الوضع الفاتح 🌞</button>
+
+    <div class="layout">
+      <aside>
+        <div class="brand">
+          <div class="logo"></div>
+          <h1>لوحة الإدارة</h1>
+        </div>
+
+        <div class="search">
+          <input
+            type="search"
+            placeholder="ابحث داخل اللوحة…"
+            oninput="filterNav(this.value)"
+          />
+        </div>
+
+        <nav id="nav">
+          <button
+            class="nav-btn"
+            data-tab="tab-hadiths"
+            data-resource="hadiths"
+            data-active="true"
+          >
+            📜 تعديل حديث <span class="badge">H</span>
+          </button>
+
+          <button class="nav-btn" data-tab="tab-books" data-resource="books">
+            📚 تعديل كتاب <span class="badge">B</span>
+          </button>
+
+          <button class="nav-btn" data-tab="tab-rawi" data-resource="rawis">
+            👳 تعديل راوي <span class="badge">N</span>
+          </button>
+
+          <button
+            class="nav-btn"
+            data-tab="tab-muhaddith"
+            data-resource="muhaddiths"
+          >
+            👳 تعديل محدث <span class="badge">N</span>
+          </button>
+
+          <button
+            class="nav-btn"
+            data-tab="tab-rulings"
+            data-resource="ruling_of_hadiths"
+          >
+            ⚖️ تعديل حكم <span class="badge">R</span>
+          </button>
+
+          <button class="nav-btn" data-tab="tab-topics" data-resource="topics">
+            🏷️ تعديل موضوع <span class="badge">T</span>
+          </button>
+
+          <button
+            class="nav-btn"
+            data-tab="tab-explainings"
+            data-resource="explainings"
+          >
+            📝 تعديل شرح <span class="badge">E</span>
+          </button>
+
+          <button
+            class="nav-btn"
+            data-tab="tab-fake-hadiths"
+            data-resource="fakehadiths"
+          >
+            ⚠️ تعديل حديث غير صحيح <span class="badge">E</span>
+          </button>
+        </nav>
+      </aside>
+
+      <main>
+        <div class="header">
+          <h2 class="title">إدارة المحتوى</h2>
+        </div>
+
+        <!-- أحاديث -->
+        <section id="tab-hadiths" class="tab" aria-hidden="false">
+          <div class="card grid">
+            <h3>📜 تعديل حديث</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>نص الحديث</th>
+                  <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody data-body="hadiths"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- كتب -->
+        <section id="tab-books" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>📚 تعديل كتاب</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>اسم الكتاب</th>
+                  <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody data-body="books"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- رواة -->
+        <section id="tab-rawi" class="tab" aria-hidden="true">
+          <div class="card">
+            <h3>👳 تعديل راوي</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>الاسم</th>
+                  <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody data-body="rawis"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- محدثين -->
+        <section id="tab-muhaddith" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>👳 تعديل محدث</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>الاسم</th>
+                  <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody data-body="muhaddiths"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- أحكام -->
+        <section id="tab-rulings" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>⚖️ تعديل حكم حديث</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>نص الحكم</th>
+                  <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody data-body="ruling_of_hadiths"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- مواضيع -->
+        <section id="tab-topics" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>🏷️ تعديل موضوع حديث</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>اسم الموضوع</th>
+                  <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody data-body="topics"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- شروح -->
+        <section id="tab-explainings" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>📝 تعديل شرح حديث</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>نص الشرح</th>
+                  <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody data-body="explainings"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- أحاديث غير صحيحة -->
+        <section id="tab-fake-hadiths" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>⚠️ تعديل حديث غير صحيح</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>نص الحديث</th>
+                  <th>تعديل</th>
+                </tr>
+              </thead>
+              <tbody data-body="fakehadiths"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- MODAL FOR EDIT (DYNAMIC FORM) -->
+    <div
+      id="editModal"
+      class="modal"
+      style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: #0008;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div class="card" style="width: 640px; max-width: 95vw">
+        <h3 id="editTitle">تعديل</h3>
+
+        <form id="editForm">
+          <input type="hidden" id="editId" name="id" />
+
+          <div id="editFields" class="grid cols-2" style="gap: 12px"></div>
+
+          <div
+            class="actions"
+            style="margin-top: 15px; justify-content: flex-start"
+          >
+            <button type="button" class="btn primary" onclick="saveEdit()">
+              حفظ
+            </button>
+            <button type="button" class="btn ghost" onclick="closeModal()">
+              إغلاق
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" style="display: none">
+      <div id="toastBox">تم التعديل بنجاح ✔</div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="edit.js"></script>
+    <script src="tabs.js"></script>
+    <script src="theme.js"></script>
+  </body>
+</html>
