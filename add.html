@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>لوحة إدارة الأحاديث</title>
+  </head>
+
+  <body>
+    <!-- زر التبديل -->
+    <button id="themeToggle">الوضع الفاتح 🌞</button>
+
+    <div class="layout">
+      <aside>
+        <div class="brand">
+          <div class="logo"></div>
+          <h1>لوحة الإدارة</h1>
+        </div>
+
+        <div class="search">
+          <input
+            type="search"
+            placeholder="ابحث داخل اللوحة…"
+            oninput="filterNav(this.value)"
+          />
+        </div>
+
+        <nav id="nav">
+          <button class="nav-btn" data-tab="tab-hadiths" data-active="true">
+            📜 إضافة حديث <span class="badge">H</span>
+          </button>
+          <button class="nav-btn" data-tab="tab-books">
+            📚 إضافة كتاب <span class="badge">B</span>
+          </button>
+          <button class="nav-btn" data-tab="tab-rawi">
+            👳 إضافة راوي <span class="badge">N</span>
+          </button>
+          <button class="nav-btn" data-tab="tab-muhaddith">
+            👳 إضافة محدث <span class="badge">N</span>
+          </button>
+          <button class="nav-btn" data-tab="tab-rulings">
+            ⚖️ إضافة حكم حديث <span class="badge">R</span>
+          </button>
+          <button class="nav-btn" data-tab="tab-topics">
+            🏷️ إضافة موضوع حديث <span class="badge">T</span>
+          </button>
+          <button class="nav-btn" data-tab="tab-explainings">
+            📝 إضافة شرح حديث <span class="badge">E</span>
+          </button>
+          <button class="nav-btn" data-tab="tab-fake-hadiths">
+            ⚠️ إضافة حديث منتشر لا يصح <span class="badge">E</span>
+          </button>
+        </nav>
+      </aside>
+
+      <main>
+        <div class="header">
+          <h2 class="title">إدارة المحتوى</h2>
+        </div>
+
+        <!-- تبويب: إضافة حديث -->
+        <section id="tab-hadiths" class="tab" aria-hidden="false">
+          <div class="card grid">
+            <h3>📜 إضافة حديث</h3>
+            <form
+              id="form-hadith"
+              class="grid cols-2"
+              onsubmit="handleSubmit(event, 'hadiths')"
+            >
+              <div class="field">
+                <label>نص الحديث</label>
+                <textarea
+                  name="HadithText"
+                  required
+                  placeholder="أدخل نص الحديث كاملاً"
+                ></textarea>
+                <div class="hint">احرص على دقة النص</div>
+              </div>
+                <!-- 
+              <div class="field">
+                <label>النص بدون تشكيل (اختياري)</label>
+                <textarea
+                  name="textwithoutdiacritics"
+                  placeholder="إن وجد"
+                ></textarea>
+              </div> -->
+
+              <div class="field">
+                <label>نوع الحديث</label>
+                <select name="HadithType">
+                  <option value="">— اختر —</option>
+                  <option value="مرفوع">مرفوع</option>
+                  <option value="قدسي">قدسي</option>
+                  <option value="حسن">موقوف</option>
+                  <option value="ضعيف">آثر</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>رقم الحديث</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="HadithNumber"
+                  min="0"
+                  placeholder="مثال: 2083"
+                />
+              </div>
+
+              <div class="field">
+                <label>الراوي (ID)</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="Rawi"
+                  min="1"
+                  placeholder="مثال: 20"
+                />
+              </div>
+
+              <div class="field">
+                <label>الكتاب (ID)</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="Source"
+                  min="1"
+                  placeholder="مثال: 1"
+                />
+              </div>
+
+              <div class="field">
+                <label>حكم المحدّث (ruling_of_muhaddith_id)</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="RulingOfMuhaddith"
+                  min="1"
+                  placeholder="مثال: 1"
+                />
+              </div>
+
+              <div class="field">
+                <label>الحكم النهائي (final_ruling_id)</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="FinalRuling"
+                  min="1"
+                  placeholder="مثال: 1"
+                />
+              </div>
+
+              <div class="field">
+                <label>الشرح (explaining_id)</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="Explaining"
+                  min="1"
+                  placeholder="مثال: 2"
+                />
+              </div>
+
+              <div class="field">
+                <label>SubValid (اختياري)</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="SubValid"
+                  min="0"
+                  placeholder="قيمة عددية"
+                />
+              </div>
+<!-- 
+              <div class="field">
+                <label>Admin (user_id)</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="adminid"
+                  min="1"
+                  placeholder="ID حساب المدير"
+                />
+              </div> -->
+
+        <div class="field">
+                <label>تسلسل السند</label>
+                <input
+                  class="input"
+                  name="Sanad"
+                  required
+                />
+              </div>
+
+              <div class="actions">
+                <button class="btn primary" type="submit">حفظ الحديث</button>
+                <button class="btn ghost" type="reset">تفريغ</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة كتاب -->
+        <section id="tab-books" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>📚 إضافة كتاب</h3>
+            <form
+              id="form-book"
+              class="grid cols-2"
+              onsubmit="handleSubmit(event, 'books')"
+            >
+              <div class="field">
+                <label>اسم الكتاب</label>
+                <input
+                  class="input"
+                  name="book_name"
+                  required
+                  placeholder="مثال: صحيح البخاري"
+                />
+              </div>
+              <div class="field">
+                <label>المحدّث (نص)</label>
+                <input
+                  class="input"
+                  name="muhaddith"
+                  placeholder="مثال: الإمام البخاري"
+                />
+              <!-- </div>
+              <div class="field">
+                <label>عدد الأحاديث</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="num_of_hadiths"
+                  min="0"
+                  value="0"
+                />
+              </div> -->
+              <div class="actions">
+                <button class="btn primary" type="submit">حفظ الكتاب</button>
+                <button class="btn ghost" type="reset">تفريغ</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة محدث/راوي -->
+        <section id="tab-muhaddith" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>👳 إضافة محدث</h3>
+            <form
+              id="form-narrator"
+              class="grid cols-2"
+              onsubmit="handleSubmit(event, 'muhaddiths')"
+            >
+              <div class="field">
+                <label>الاسم</label>
+                <input
+                  class="input"
+                  name="name"
+                  required
+                  placeholder="اسم المحدث"
+                />
+              </div>
+              <div class="field">
+                <label>الجنس</label>
+                <select name="gender" class="input">
+                  <option value="">— اختر —</option>
+                  <option value="M">ذكر</option>
+                  <option value="F">أنثى</option>
+                </select>
+              <!-- </div>
+              <div class="field">
+                <label>نوع الراوي</label>
+                <select name="narrator_type" class="input">
+                  <option value="">— اختر —</option>
+                  <option value="Muhaddith">محدث</option>
+                  <option value="Rawi">راوي</option>
+                </select>
+              </div> -->
+              <div class="actions">
+                <button class="btn primary" type="submit">حفظ المحدث</button>
+                <button class="btn ghost" type="reset">تفريغ</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section id="tab-rawi" class="tab" aria-hidden="true">
+          <div class="card grid">
+
+            <h3>👳 إضافة راوي</h3>
+            <form
+              id="form-narrator"
+              class="grid cols-2"
+              onsubmit="handleSubmit(event, 'rawis')"
+            >
+              <div class="field">
+                <label>الاسم</label>
+                <input
+                  class="input"
+                  name="name"
+                  required
+                  placeholder="اسم الراوي"
+                />
+              </div>
+              <div class="field">
+                <label>الجنس</label>
+                <select name="gender" class="input">
+                  <option value="">— اختر —</option>
+                  <option value="M">ذكر</option>
+                  <option value="F">أنثى</option>
+                </select>
+        
+        <div class="field">
+                <label>حال الراوي</label>
+                <input
+                  class="input"
+                  name="halalrawi"
+                  required
+                />
+              </div>
+
+              <div class="actions">
+                <button class="btn primary" type="submit">حفظ الراوي</button>
+                <button class="btn ghost" type="reset">تفريغ</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة حكم حديث -->
+        <section id="tab-rulings" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>⚖️ إضافة حكم حديث</h3>
+            <form
+              id="form-ruling"
+              class="grid"
+              onsubmit="handleSubmit(event, 'ruling_of_hadiths')"
+            >
+              <div class="field">
+                <label>نص الحكم</label>
+                <input
+                  class="input"
+                  name="RulingText"
+                  required
+                  placeholder="مثال: صحيح / ضعيف / حسن ..."
+                />
+              </div>
+              <div class="actions">
+                <button class="btn primary" type="submit">حفظ الحكم</button>
+                <button class="btn ghost" type="reset">تفريغ</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة موضوع حديث -->
+        <section id="tab-topics" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>🏷️ إضافة موضوع حديث</h3>
+            <form
+              id="form-topic"
+              class="grid"
+              onsubmit="handleSubmit(event, 'topics')"
+            >
+              <div class="field">
+                <label>اسم الموضوع</label>
+                <input
+                  class="input"
+                  name="TopicName"
+                  required
+                  placeholder="مثال: الأخلاق / الصلاة ..."
+                />
+              </div>
+              <div class="actions">
+                <button class="btn primary" type="submit">حفظ الموضوع</button>
+                <button class="btn ghost" type="reset">تفريغ</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة شرح حديث -->
+        <section id="tab-explainings" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>📝 إضافة شرح حديث</h3>
+            <form
+              id="form-explaining"
+              class="grid"
+              onsubmit="handleSubmit(event, 'explainings')"
+            >
+              <div class="field">
+                <label>نص الشرح</label>
+                <textarea
+                  name="ETEXT"
+                  required
+                  placeholder="أدخل نص الشرح"
+                ></textarea>
+              </div>
+              <div class="actions">
+                <button class="btn primary" type="submit">حفظ الشرح</button>
+                <button class="btn ghost" type="reset">تفريغ</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة حديث منتشر لا يصح -->
+<section id="tab-fake-hadiths" class="tab" aria-hidden="true">
+  <div class="card grid">
+    <h3>⚠️ إضافة حديث منتشر لا يصح</h3>
+
+    <form
+      id="form-fake-hadith"
+      class="grid cols-2"
+      onsubmit="handleSubmit(event, 'fakehadiths')"
+    >
+
+      <!-- نص الحديث المنتشر -->
+      <div class="field">
+        <label>نص الحديث المنتشر</label>
+        <textarea
+          name="FakeHadithText"
+          required
+          placeholder="أدخل نص الحديث غير الصحيح"
+        ></textarea>
+        <div class="hint">هذا النص سيتم نشره على أنه حديث غير صحيح.</div>
+      </div>
+
+      
+      <div class="field">
+        <label>الحديث الصحيح البديل (SubValid)</label>
+        <input
+          class="input"
+          type="number"
+          name="SubValid"
+          min="1"
+          placeholder="ID الحديث الصحيح البديل"
+        />
+      </div>
+
+ 
+      <div class="field">
+        <label>حكم الحديث (Ruling)</label>
+        <input
+          class="input"
+          type="number"
+          name="Ruling"
+          min="1"
+          placeholder="ID حكم الحديث"
+          required
+        />
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" type="submit">حفظ الحديث</button>
+        <button class="btn ghost" type="reset">تفريغ</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
+      </main>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" style="display: none">
+      <div id="toastBox">تم الحفظ بنجاح ✅</div>
+    </div>
+  </body>
+
+
+  <script src="api.js"></script>
+  <script src="add.js"></script>
+  <script src="tabs.js"></script>
+  <script src="theme.js"></script>
+
+
+
+
+
+  </html>

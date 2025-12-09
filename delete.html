@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>لوحة إدارة الأحاديث</title>
+  </head>
+
+  <body>
+    <!-- زر التبديل -->
+    <button id="themeToggle">الوضع الفاتح 🌞</button>
+
+    <div class="layout">
+      <aside>
+        <div class="brand">
+          <div class="logo"></div>
+          <h1>لوحة الإدارة</h1>
+        </div>
+
+        <div class="search">
+          <input
+            type="search"
+            placeholder="ابحث داخل اللوحة…"
+            oninput="filterNav(this.value)"
+          />
+        </div>
+        <nav id="nav">
+          <button
+            class="nav-btn"
+            data-tab="tab-hadiths"
+            data-resource="hadiths"
+            data-active="true"
+          >
+            📜 حذف حديث <span class="badge">H</span>
+          </button>
+
+          <button class="nav-btn" data-tab="tab-books" data-resource="books">
+            📚 حذف كتاب <span class="badge">B</span>
+          </button>
+
+          <button class="nav-btn" data-tab="tab-rawi" data-resource="rawis">
+            👳 حذف راوي <span class="badge">N</span>
+          </button>
+
+          <button
+            class="nav-btn"
+            data-tab="tab-muhaddith"
+            data-resource="muhaddiths"
+          >
+            👳 حذف محدث <span class="badge">N</span>
+          </button>
+
+          <button
+            class="nav-btn"
+            data-tab="tab-rulings"
+            data-resource="ruling_of_hadiths"
+          >
+            ⚖️ حذف حكم حديث <span class="badge">R</span>
+          </button>
+
+          <button class="nav-btn" data-tab="tab-topics" data-resource="topics">
+            🏷️ حذف موضوع حديث <span class="badge">T</span>
+          </button>
+
+          <button
+            class="nav-btn"
+            data-tab="tab-explainings"
+            data-resource="explainings"
+          >
+            📝 حذف شرح حديث <span class="badge">E</span>
+          </button>
+
+          <button
+            class="nav-btn"
+            data-tab="tab-fake-hadiths"
+            data-resource="fakehadiths"
+          >
+            ⚠️ حذف حديث منتشر لا يصح <span class="badge">E</span>
+          </button>
+        </nav>
+      </aside>
+
+      <main>
+        <div class="header">
+          <h2 class="title">إدارة المحتوى</h2>
+        </div>
+
+        <!-- تبويب: إضافة حديث -->
+        <section id="tab-hadiths" class="tab" aria-hidden="false">
+          <div class="card grid">
+            <h3>📜 حذف حديث</h3>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>نص الحديث</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody data-body="hadiths"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة كتاب -->
+        <section id="tab-books" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>📚 حذف كتاب</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>اسم الكتاب</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody data-body="books"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة محدث/راوي -->
+        <section id="tab-muhaddith" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>👳 حذف محدث</h3>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>الاسم</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody data-body="muhaddiths"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="tab-rawi" class="tab" aria-hidden="true">
+          <div class="card">
+            <h3>قائمة الرواة</h3>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>الاسم</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody data-body="rawis"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة حكم حديث -->
+        <section id="tab-rulings" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>⚖️ حذف حكم حديث</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>الحكم</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody data-body="ruling_of_hadiths"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة موضوع حديث -->
+        <section id="tab-topics" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>🏷️ حذف موضوع حديث</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>الموضوع</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody data-body="topics"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة شرح حديث -->
+        <section id="tab-explainings" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>📝 حذف شرح حديث</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>نص الشرح</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody data-body="explainings"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- تبويب: إضافة حديث منتشر لا يصح -->
+        <section id="tab-fake-hadiths" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>⚠️ حذف حديث منتشر لا يصح</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>نص الحديث</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+              <tbody data-body="fakehadiths"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" style="display: none">
+      <div id="toastBox">تم الحفظ بنجاح ✅</div>
+    </div>
+  </body>
+
+  <script src="api.js"></script>
+  <script src="delete.js"></script>
+  <script src="tabs.js"></script>
+  <script src="theme.js"></script>
+</html>
