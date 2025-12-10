@@ -40,3 +40,19 @@ function toast(msg) {
   t.style.display = "flex";
   setTimeout(() => (t.style.display = "none"), 2000);
 }
+
+async function apiGet(url) {
+  return await fetch("https://apibykassem.onrender.com/api" + url, {
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  }).then((res) => res.json());
+}
+
+const token = localStorage.getItem("token");
+
+if (!token) {
+  // Not logged in → redirect to login page
+  window.location.href = "../index.html";
+}

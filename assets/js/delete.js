@@ -4,26 +4,26 @@
 
 // Resource → ID field
 const resourceIdMap = {
-  rawis: item => item.id,
-  books: item => item.id,
-  hadiths: item => item.id,
-  muhaddiths: item => item.id,
-  ruling_of_hadiths: item => item.id,
-  topics: item => item.id,
-  explainings: item => item.id,
-  fakehadiths: item => item.id,
+  rawis: (item) => item.id,
+  books: (item) => item.id,
+  hadiths: (item) => item.id,
+  muhaddiths: (item) => item.id,
+  ruling_of_hadiths: (item) => item.id,
+  topics: (item) => item.id,
+  explainings: (item) => item.id,
+  fakehadiths: (item) => item.id,
 };
 
 // Resource → Display text field
 const resourceDisplayMap = {
-  rawis: item => item.name,
-  books: item => item.book_name,
-  hadiths: item => item.HadithText,
-  muhaddiths: item => item.name,
-  ruling_of_hadiths: item => item.RulingText,
-  topics: item => item.TopicName,
-  explainings: item => item.ETEXT,
-  fakehadiths: item => item.text, // Laravel Resource renamed it!
+  rawis: (item) => item.name,
+  books: (item) => item.book_name,
+  hadiths: (item) => item.HadithText,
+  muhaddiths: (item) => item.name,
+  ruling_of_hadiths: (item) => item.RulingText,
+  topics: (item) => item.TopicName,
+  explainings: (item) => item.ETEXT,
+  fakehadiths: (item) => item.text, // Laravel Resource renamed it!
 };
 
 // Load any resource (rawis, books, hadiths...)
@@ -32,9 +32,7 @@ async function loadResource(resource) {
     const response = await apiGet(`/${resource}`);
 
     // Normalize: some APIs return { data: [...] } others return [...]
-    const list = Array.isArray(response)
-      ? response
-      : response.data || [];
+    const list = Array.isArray(response) ? response : response.data || [];
 
     displayResource(resource, list);
   } catch (err) {
@@ -52,7 +50,7 @@ function displayResource(resource, list) {
   const getId = resourceIdMap[resource];
   const getDisplayText = resourceDisplayMap[resource];
 
-  list.forEach(item => {
+  list.forEach((item) => {
     const tr = document.createElement("tr");
 
     const id = getId ? getId(item) : "---";

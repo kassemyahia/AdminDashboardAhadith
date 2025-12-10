@@ -1,0 +1,51 @@
+console.log("login.js loaded");
+
+// Make login globally accessible
+window.adminlogin = async function (event) {
+  event.preventDefault();
+  console.log("adminlogin() triggered!");
+
+  const loginValue = document.querySelector("input[name=login]").value.trim();
+  const password = document.querySelector("input[name=password]").value.trim();
+
+  if (!loginValue || !password) {
+    alert("يرجى إدخال البريد الإلكتروني أو اسم المستخدم وكلمة المرور");
+    return false; // STOP FORM SUBMISSION
+  }
+
+  try {
+    const response = await fetch("https://apibykassem.onrender.com/api/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        login: loginValue,
+        password: password,
+      }),
+    });
+
+    const data = await response.json();
+    console.log("API Response:", data);
+
+    if (!response.ok) {
+      alert(data.message || "خطأ في تسجيل الدخول");
+      return false; // IMPORTANT
+    }
+
+    if (!data.user || data.user.usertype !== "admin") {
+      alert("غير مصرح لك بالدخول ❌");
+      return false;
+    }
+
+    localStorage.setItem("token", data.token);
+
+    window.location.href = "pages/main.html";
+    return false;
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("فشل الاتصال بالخادم");
+    return false;
+  }
+};

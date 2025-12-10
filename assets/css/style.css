@@ -1,20 +1,22 @@
 /* ========================
-         الثيمات (داكن / فاتح)
-         كل الألوان من خلال متغيّرات
-      ========================= */
+       الثيمات (داكن / فاتح)
+       — بعد التعديل —
+  ========================= */
+
+/* DARK MODE — كما هو بدون تغيير */
 :root,
 :root[data-theme="dark"] {
-  --bg: #0f172a; /* خلفية عامة */
+  --bg: #0f172a;
   --bg-grad: radial-gradient(
     1200px 800px at 80% -200px,
     rgba(34, 197, 94, 0.15),
     transparent 60%
   );
-  --panel: #0b1220; /* بطاقات/حقول */
-  --panel-2: #0a0f1a; /* طبقة ثانية */
-  --muted: #94a3b8; /* نص خافت */
-  --text: #e5e7eb; /* نص أساسي */
-  --primary: #22c55e; /* زر أساسي */
+  --panel: #0b1220;
+  --panel-2: #0a0f1a;
+  --muted: #94a3b8;
+  --text: #e5e7eb;
+  --primary: #22c55e;
   --primary-600: #16a34a;
   --danger: #ef4444;
   --border: #1f2937;
@@ -23,33 +25,42 @@
   --radius: 18px;
 }
 
+/* ============================================
+   LIGHT MODE — تمت إعادة تصميمه بالكامل
+   ليطابق لوحة التحكم ذات الطابع التراثي
+   ============================================ */
 :root[data-theme="light"] {
-  --bg: #f8fafc;
-  --bg-grad: radial-gradient(
-    1200px 800px at 80% -200px,
-    rgba(34, 197, 94, 0.08),
-    transparent 60%
-  );
-  --panel: #ffffff;
-  --panel-2: #f9fafb;
-  --muted: #475569;
-  --text: #1e293b;
-  --primary: #22c55e;
-  --primary-600: #16a34a;
-  --danger: #ef4444;
-  --border: #e2e8f0;
-  --accent: #0ea5e9;
-  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  --radius: 18px;
+  --bg: #f7e9dd; /* خلفية وردية فاتحة */
+  --bg-grad: none;
+
+  --panel: #f4dec9; /* بطاقات */
+  --panel-2: #f2d6c0; /* طبقة ثانوية مشابهة */
+
+  --muted: #5a4228;  /* النص الخافت بني */
+  --text: #4a2f1b;   /* النص الأساسي بني داكن */
+
+  --primary: #c29d76;   /* لون الأزرار */
+  --primary-600: #a9825e;
+
+  --danger: #b91c1c;
+  --border: #d2b48c; /* الحدود ذهبية */
+
+  --accent: #8b5e34; /* لون زخرفي */
+
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+  --radius: 14px;
 }
 
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter,
     "Noto Kufi Arabic", Tahoma, Arial, sans-serif;
+
   background: var(--bg-grad), var(--bg);
   color: var(--text);
 }
@@ -91,20 +102,20 @@ aside {
   gap: 10px;
   margin-bottom: 18px;
 }
+
 .logo {
-  width: 38px;
-  height: 38px;
+  width: 60px;
+  height: 60px;
   border-radius: 12px;
-  background: conic-gradient(
-    from 200deg,
-    var(--primary),
-    #10b981,
-    #14b8a6,
-    #60a5fa
-  );
-  box-shadow: var(--shadow);
-  border: 1px solid var(--accent);
+  background-image: url("../images/logo.png"); /* مسار صورتك */
+  background-size: cover;       /* جهتملأ كامل العنصر */
+  background-position: center;  /* تركز الصورة في الوسط */
+  background-repeat: no-repeat;
+  /* box-shadow: var(--shadow);
+  border: 1px solid var(--accent); */
 }
+
+
 .brand h1 {
   font-size: 18px;
   margin: 0;
@@ -120,6 +131,7 @@ aside {
   border-radius: 12px;
   padding: 8px 10px;
 }
+
 .search input {
   flex: 1;
   background: transparent;
@@ -134,6 +146,7 @@ nav {
   flex-direction: column;
   gap: 6px;
 }
+
 .nav-btn {
   all: unset;
   display: flex;
@@ -145,16 +158,19 @@ nav {
   color: var(--muted);
   border: 1px solid transparent;
 }
+
 .nav-btn[data-active="true"] {
   color: var(--text);
   background: linear-gradient(180deg, var(--panel), var(--panel-2));
   border-color: var(--border);
 }
+
 .nav-btn:hover {
   background: var(--panel);
   color: var(--text);
   border-color: var(--border);
 }
+
 .badge {
   margin-inline-start: auto;
   font-size: 12px;
@@ -169,12 +185,14 @@ main {
   display: grid;
   gap: 22px;
 }
+
 .header {
   display: flex;
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
 }
+
 .title {
   font-size: 20px;
   font-weight: 700;
@@ -195,20 +213,25 @@ main {
   display: grid;
   gap: 14px;
 }
+
 .grid.cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
 .grid.cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+
 @media (max-width: 980px) {
   .layout {
     grid-template-columns: 1fr;
   }
+
   aside {
     position: static;
     height: auto;
   }
+
   .grid.cols-2,
   .grid.cols-3 {
     grid-template-columns: 1fr;
@@ -220,6 +243,7 @@ main {
   flex-direction: column;
   gap: 8px;
 }
+
 .field label {
   font-size: 13px;
   color: var(--muted);
@@ -229,17 +253,19 @@ main {
 textarea,
 select {
   width: 100%;
-  background: var(--panel);
+  background: var(--panel-2);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 10px 12px;
   color: var(--text);
   outline: none;
 }
+
 textarea {
   min-height: 120px;
   resize: vertical;
 }
+
 .hint {
   font-size: 12px;
   color: var(--muted);
@@ -251,6 +277,7 @@ textarea {
   flex-wrap: wrap;
   margin-top: 10px;
 }
+
 .btn {
   all: unset;
   cursor: pointer;
@@ -260,14 +287,17 @@ textarea {
   background: var(--panel);
   color: var(--text);
 }
+
 .btn.primary {
   background: var(--primary);
   border-color: var(--primary-600);
-  color: #052e16;
+  color: #4a2f1b;
 }
+
 .btn.primary:hover {
   background: var(--primary-600);
 }
+
 .btn.ghost:hover {
   background: var(--panel-2);
 }
@@ -275,10 +305,12 @@ textarea {
 .tab {
   display: none;
 }
+
 .tab[aria-hidden="false"] {
   display: block;
   animation: fade 0.25s ease;
 }
+
 @keyframes fade {
   from {
     opacity: 0.4;
@@ -299,6 +331,7 @@ textarea {
   z-index: 9999;
   pointer-events: none;
 }
+
 .toast > div {
   pointer-events: auto;
   background: color-mix(in srgb, var(--primary) 18%, var(--panel) 82%);
@@ -318,6 +351,7 @@ textarea {
   text-align: center;
   padding: 10px 0 20px;
 }
+
 code.inline {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -325,6 +359,7 @@ code.inline {
   border-radius: 8px;
   color: var(--text);
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -335,7 +370,8 @@ code.inline {
   box-shadow: var(--shadow);
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 12px;
   text-align: right;
   border-bottom: 1px solid var(--border);
@@ -351,8 +387,6 @@ code.inline {
   background: var(--panel-2);
 }
 
-
-
 .btn-delete {
   background: var(--danger);
   color: white;
@@ -363,32 +397,32 @@ code.inline {
 }
 
 .btn-delete:hover {
-  background: #b91c1c;
+  background: #991b1b;
 }
-
 
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-  padding: 20px; /* prevents touching edges on mobile */
+  padding: 20px;
 }
 
 .modal-card {
   width: 640px;
   max-width: 95vw;
-  max-height: 90vh;       /* ⭐ KEY FIX */
-  overflow-y: auto;        /* ⭐ ENABLE SCROLLING */
+  max-height: 90vh;
+  overflow-y: auto;
   border-radius: 12px;
-  background: var(--card-bg, #fff);
+  background: var(--panel);
   padding: 20px;
 }
+
 @media (max-width: 600px) {
   .modal {
-    align-items: flex-start; /* show full modal */
+    align-items: flex-start;
   }
 
   .modal-card {

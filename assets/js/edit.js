@@ -69,6 +69,8 @@ const editConfigs = {
       // 👇 this is the SubValid column in DB
       { name: "sub_valid", label: "SubValid (ID)", type: "number" },
 
+      { name: "SubValid", label: "SubValid (ID)", type: "number" },
+
       { name: "Sanad", label: "تسلسل السند", type: "text" },
     ],
     mapData: (d) => ({
@@ -103,6 +105,20 @@ const editConfigs = {
 
       // Sanad
       Sanad: d.sanad || d.Sanad || "",
+    }),
+  },
+
+  books: {
+    title: "تعديل كتاب",
+    fields: [
+      { name: "book_name", label: "اسم الكتاب", type: "text" },
+      { name: "book_name", label: "اسم الكتاب", type: "text" },
+      { name: "muhaddith", label: "المحدّث (نص أو ID)", type: "text" },
+    ],
+    mapData: (d) => ({
+      book_name: d.book_name || "",
+      book_name: d.book_name || "",
+      muhaddith: d.muhaddith ?? d.muhaddith_name ?? "",
     }),
   },
 
@@ -177,7 +193,6 @@ const editConfigs = {
       ETEXT: d.ETEXT || d.text || "",
     }),
   },
-
   fakehadiths: {
     title: "تعديل حديث غير صحيح",
     fields: [
@@ -187,7 +202,7 @@ const editConfigs = {
         type: "textarea",
       },
       {
-        name: "sub_valid",
+        name: "SubValid",
         label: "الحديث الصحيح البديل (SubValid ID)",
         type: "number",
       },
@@ -199,7 +214,9 @@ const editConfigs = {
     ],
     mapData: (d) => ({
       FakeHadithText: d.FakeHadithText || d.text || "",
-      sub_valid: d.sub_valid ?? d.sub_valid?.id ?? "",
+
+      SubValid: d.SubValid ?? d.sub_valid?.id ?? "",
+
       Ruling: d.Ruling ?? d.ruling?.id ?? "",
     }),
   },

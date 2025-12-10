@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <title>لوحة إدارة الأحاديث</title>
   </head>
 
@@ -230,10 +230,19 @@
     <div id="toast" class="toast" style="display: none">
       <div id="toastBox">تم الحفظ بنجاح ✅</div>
     </div>
+
+    <script>
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        // Not logged in → redirect to login page
+        window.location.href = "../index.html";
+      }
+    </script>
   </body>
 
-  <script src="api.js"></script>
-  <script src="delete.js"></script>
-  <script src="tabs.js"></script>
-  <script src="theme.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/delete.js"></script>
+  <script src="../assets/js/tabs.js"></script>
+  <script src="../assets/js/theme.js"></script>
 </html>

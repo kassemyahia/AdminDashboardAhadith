@@ -18,7 +18,10 @@ document.getElementById("nav").addEventListener("click", (e) => {
 
   // show section
   document.querySelectorAll(".tab").forEach((section) => {
-    section.setAttribute("aria-hidden", section.id === tabId ? "false" : "true");
+    section.setAttribute(
+      "aria-hidden",
+      section.id === tabId ? "false" : "true"
+    );
   });
 
   // if the tab is related to deletion/load operations

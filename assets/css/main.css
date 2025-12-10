@@ -1,0 +1,300 @@
+/* ----------------------------------------------------
+   إعداد الخط والتنسيق العام
+---------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Cairo", sans-serif;
+  background: #f7e9dd; /* الخلفية الوردية */
+  color: #5a4228;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----------------------------------------------------
+   الشريط العلوي الأسود
+---------------------------------------------------- */
+.topbar {
+  background: #000;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.topbar .inner {
+  width: 100%;
+  display: flex;
+  padding: 0 20px;
+}
+
+.icon-btn {
+  background: #d9b77b;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------
+   شريط العنوان
+---------------------------------------------------- */
+.navbar {
+  background: #f4dec9;
+  padding: 14px 0;
+  border-bottom: 2px solid #c29d76;
+}
+
+.navbar .inner {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.nav-actions {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------
+   الحاوية الأساسية
+---------------------------------------------------- */
+.container {
+  display: flex;
+  flex-direction: column; /* NEW – المهم */
+  align-items: center;    /* NEW – لتمركز المحتوى */
+  padding: 40px 0;
+  position: relative;
+}
+
+
+/* الشريط الزخرفي الجانبي */
+.container::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 90px;
+  height: 100%;
+  /* background-image: url('../images/pattern.png'); ضع الصورة هنا */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.page-logo {
+    display: flex;
+    justify-content: center; /* يضع الشعار في المنتصف */
+    margin: 20px 0 40px;
+}
+
+.page-logo img {
+    width: 200px;      /* حجم مناسب */
+    max-width: 40vw;   /* يمنع التمدد على الشاشات الصغيرة */
+    height: auto;
+    object-fit: contain;
+    opacity: 0.92;     /* يعطي تأثير خفيف جميل */
+    border-radius: 12px;
+}
+
+
+/* ----------------------------------------------------
+   البطاقات
+---------------------------------------------------- */
+
+/* الوضع الافتراضي: عمودي للموبايل */
+.cards {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 2;
+}
+
+.card {
+  background: #f4dec9;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  border: 1px solid #d2b48c;
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+/* ----------------------------------------------------
+   الأزرار
+---------------------------------------------------- */
+.btn.add {
+  display: inline-block;
+  padding: 12px 24px;
+  margin-top: 10px;
+  background: transparent;
+  border: 2px solid #c29d76;
+  border-radius: 12px;
+  font-size: 18px;
+  color: #6a4a2d;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn.add:hover {
+  background: #c29d76;
+  color: #fff;
+}
+
+/* ----------------------------------------------------
+   شاشات واسعة: البطاقات في صف واحد أفقي
+---------------------------------------------------- */
+@media (min-width: 900px) {
+  .cards {
+    flex-direction: row;
+    width: auto;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .card {
+    width: 280px;
+  }
+}
+
+/* ----------------------------------------------------
+   للموبايل: إخفاء الشريط الزخرفي
+---------------------------------------------------- */
+@media (max-width: 600px) {
+  .container::before {
+    display: none;
+  }
+  .cards {
+    width: 85%;
+  }
+}
+
+/* ----------------------------------------------------
+   صفحة تسجيل الدخول — تنسيقات خاصة
+---------------------------------------------------- */
+
+/* صندوق تسجيل الدخول */
+.login-card {
+  width: 100%;
+  background: #f4dec9;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 1px solid #d2b48c;
+  text-align: center;
+}
+
+.login-form .field {
+  margin-top: 15px;
+  text-align: right;
+}
+
+.login-form label {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* حقول الإدخال */
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border: 1px solid #c9b08b;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: "Cairo", sans-serif;
+  box-sizing: border-box;
+}
+
+/* زر الدخول */
+.login-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+/* ----------------------------------------------------
+   صفحة تسجيل الدخول — تصميم البطاقة
+---------------------------------------------------- */
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 60px;
+}
+
+.login-card {
+  width: 380px;
+  background: #f4dec9;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #d2b48c;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.login-card h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* الحقول */
+.login-form .field {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.login-form label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* صندوق الإدخال */
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #c9b08b;
+  font-size: 16px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* زر الدخول */
+.login-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+
+.login-logo {
+    display: flex;
+    justify-content: center; /* يضع الشعار في المنتصف */
+    margin: 20px 0 40px;
+}
+
+.login-logo img {
+    width: 100px;      /* حجم مناسب */
+    max-width: 40vw;   /* يمنع التمدد على الشاشات الصغيرة */
+    height: auto;
+    object-fit: contain;
+    opacity: 0.92;     /* يعطي تأثير خفيف جميل */
+    border-radius: 12px;
+}
