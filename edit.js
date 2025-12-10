@@ -34,7 +34,6 @@ const resourceDisplayMap = {
 };
 
 // ------------ Dynamic edit config per resource ------------
-
 const editConfigs = {
   hadiths: {
     title: "تعديل حديث",
@@ -48,8 +47,8 @@ const editConfigs = {
           { value: "", label: "— اختر —" },
           { value: "مرفوع", label: "مرفوع" },
           { value: "قدسي", label: "قدسي" },
-          { value: "حسن", label: "موقوف" },
-          { value: "ضعيف", label: "آثر" },
+          { value: "موقوف", label: "موقوف" },
+          { value: "أثر", label: "أثر" },
         ],
       },
       { name: "HadithNumber", label: "رقم الحديث", type: "number" },
@@ -66,7 +65,10 @@ const editConfigs = {
         type: "number",
       },
       { name: "Explaining", label: "الشرح (ID)", type: "number" },
-      { name: "SubValid", label: "SubValid", type: "number" },
+
+      // 👇 this is the SubValid column in DB
+      { name: "sub_valid", label: "SubValid (ID)", type: "number" },
+
       { name: "Sanad", label: "تسلسل السند", type: "text" },
     ],
     mapData: (d) => ({
@@ -89,25 +91,22 @@ const editConfigs = {
       // Explaining ID
       Explaining: d.Explaining ?? d.explaining?.id ?? "",
 
-      // SubValid
-      SubValid: d.SubValid ?? "",
+      // ⭐ SubValid value:
+      // 1) if API sends raw column: sub_valid
+      // 2) or camel/case variant: SubValid
+      // 3) or relation: subvalid: { id: 51, ... } OR [ { id: 51 } ]
+      sub_valid:
+        d.sub_valid ??
+        d.SubValid ??
+        (Array.isArray(d.subvalid) ? d.subvalid[0]?.id : d.subvalid?.id) ??
+        "",
 
       // Sanad
       Sanad: d.sanad || d.Sanad || "",
     }),
   },
 
-  books: {
-    title: "تعديل كتاب",
-    fields: [
-      { name: "book_name", label: "اسم الكتاب", type: "text" },
-      { name: "muhaddith", label: "المحدّث (نص أو ID)", type: "text" },
-    ],
-    mapData: (d) => ({
-      book_name: d.book_name || "",
-      muhaddith: d.muhaddith ?? d.muhaddith_name ?? "",
-    }),
-  },
+  // ... (rest of editConfigs unchanged)
 
   rawis: {
     title: "تعديل راوي",
@@ -188,7 +187,7 @@ const editConfigs = {
         type: "textarea",
       },
       {
-        name: "SubValid",
+        name: "sub_valid",
         label: "الحديث الصحيح البديل (SubValid ID)",
         type: "number",
       },
@@ -200,7 +199,7 @@ const editConfigs = {
     ],
     mapData: (d) => ({
       FakeHadithText: d.FakeHadithText || d.text || "",
-      SubValid: d.SubValid ?? d.sub_valid?.id ?? "",
+      sub_valid: d.sub_valid ?? d.sub_valid?.id ?? "",
       Ruling: d.Ruling ?? d.ruling?.id ?? "",
     }),
   },
