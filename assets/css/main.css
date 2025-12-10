@@ -186,77 +186,57 @@ body {
 /* ----------------------------------------------------
    صفحة تسجيل الدخول — تنسيقات خاصة
 ---------------------------------------------------- */
+/* ===============================
+   إصلاحات خاصة لصفحة تسجيل الدخول
+   =============================== */
 
-/* صندوق تسجيل الدخول */
-.login-card {
-  width: 100%;
-  background: #f4dec9;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border: 1px solid #d2b48c;
-  text-align: center;
-}
-
-.login-form .field {
-  margin-top: 15px;
-  text-align: right;
-}
-
-.login-form label {
-  font-weight: 600;
-  font-size: 16px;
-}
-
-/* حقول الإدخال */
-.login-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  border: 1px solid #c9b08b;
-  border-radius: 8px;
-  font-size: 16px;
-  font-family: "Cairo", sans-serif;
-  box-sizing: border-box;
-}
-
-/* زر الدخول */
-.login-btn {
-  width: 100%;
-  margin-top: 20px;
-}
-
-
-/* ----------------------------------------------------
-   صفحة تسجيل الدخول — تصميم البطاقة
----------------------------------------------------- */
-
-.login-wrapper {
+/* container — center & remove side-strip effect */
+.container {
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin-top: 60px;
+  padding: 30px 15px;
+  position: relative;
 }
 
+.container::before {
+  display: none !important; /* يمنع الشريط الزخرفي من الضغط على الصفحة */
+}
+
+/* cards wrapper */
+.cards {
+  width: 100%;
+  max-width: 380px;    /* بدل الـ 350px الثابت */
+  margin: auto;
+}
+
+/* login card */
 .login-card {
-  width: 380px;
+  width: 100%;
   background: #f4dec9;
-  padding: 25px;
+  padding: 25px 20px;
   border-radius: 12px;
   border: 1px solid #d2b48c;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   text-align: center;
 }
 
-.login-card h3 {
-  font-size: 22px;
-  margin-bottom: 20px;
+/* logo container */
+.login-logo {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 25px;
 }
 
-/* الحقول */
+.login-logo img {
+  width: 90px;
+  max-width: 30vw;
+  opacity: 0.95;
+}
+
+/* labels + fields */
 .login-form .field {
   text-align: right;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .login-form label {
@@ -264,37 +244,32 @@ body {
   font-weight: 600;
 }
 
-/* صندوق الإدخال */
 .login-input {
   width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border-radius: 8px;
+  padding: 12px;
   border: 1px solid #c9b08b;
+  border-radius: 8px;
   font-size: 16px;
   background: #fff;
   box-sizing: border-box;
 }
 
-/* زر الدخول */
+/* login button */
 .login-btn {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 18px;
+}
+
+/* mobile fine-tuning */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 20px 15px;
+  }
+  .login-logo img {
+    width: 75px;
+  }
 }
 
 
-
-.login-logo {
-    display: flex;
-    justify-content: center; /* يضع الشعار في المنتصف */
-    margin: 20px 0 40px;
-}
-
-.login-logo img {
-    width: 100px;      /* حجم مناسب */
-    max-width: 40vw;   /* يمنع التمدد على الشاشات الصغيرة */
-    height: auto;
-    object-fit: contain;
-    opacity: 0.92;     /* يعطي تأثير خفيف جميل */
-    border-radius: 12px;
-}
