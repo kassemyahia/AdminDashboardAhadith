@@ -3,7 +3,7 @@
 // ======================================
 
 const API_BASE = "https://apibykassem.onrender.com/api";
-
+// const API_BASE = "http://127.0.0.1:8000/api";
 async function api(method, endpoint, data = null) {
   const options = { method, headers: { Accept: "application/json" } };
 
@@ -17,7 +17,9 @@ async function api(method, endpoint, data = null) {
   const res = await fetch(`${API_BASE}${endpoint}`, options);
 
   let json = null;
-  try { json = await res.json(); } catch {}
+  try {
+    json = await res.json();
+  } catch {}
 
   if (!res.ok) throw new Error(JSON.stringify(json || res.statusText));
 

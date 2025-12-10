@@ -5,8 +5,7 @@
 // ------------ Helper: filter sidebar buttons -------------
 function filterNav(q) {
   document.querySelectorAll("#nav .nav-btn").forEach((btn) => {
-    btn.style.display =
-      !q || btn.textContent.includes(q) ? "flex" : "none";
+    btn.style.display = !q || btn.textContent.includes(q) ? "flex" : "none";
   });
 }
 
@@ -74,13 +73,26 @@ const editConfigs = {
       HadithText: d.HadithText || "",
       HadithType: d.HadithType || "",
       HadithNumber: d.HadithNumber ?? "",
+
+      // Rawi ID
       Rawi: d.Rawi ?? d.rawi?.id ?? "",
+
+      // Book ID
       Source: d.Source ?? d.book?.id ?? "",
-      RulingOfMuhaddith:
-        d.RulingOfMuhaddith ?? d.ruling_of_muhaddith?.id ?? "",
-      FinalRuling: d.FinalRuling ?? d.final_ruling?.id ?? "",
+
+      // Ruling of Muhaddith ID
+      RulingOfMuhaddith: d.ruling_of_muhaddith?.id ?? d.RulingOfMuhaddith ?? "",
+
+      // Final ruling ID
+      FinalRuling: d.final_ruling?.id ?? d.FinalRuling ?? "",
+
+      // Explaining ID
       Explaining: d.Explaining ?? d.explaining?.id ?? "",
+
+      // SubValid
       SubValid: d.SubValid ?? "",
+
+      // Sanad
       Sanad: d.sanad || d.Sanad || "",
     }),
   },
@@ -139,6 +151,7 @@ const editConfigs = {
     mapData: (d) => ({
       name: d.name || "",
       gender: d.gender || "",
+      about: d.about || "",
     }),
   },
 
@@ -255,7 +268,7 @@ async function openEdit(resource, id) {
   fieldsContainer.innerHTML = '<div class="hint">جارِ تحميل البيانات...</div>';
   modal.style.display = "flex";
 
-    try {
+  try {
     const response = await apiGet(`/${resource}/${id}`);
 
     // لو الرد في شكل { data: {...} } (Laravel Resource)
@@ -269,7 +282,6 @@ async function openEdit(resource, id) {
     console.error(err);
     fieldsContainer.innerHTML = '<div class="hint">فشل تحميل البيانات</div>';
   }
-
 }
 
 // إنشاء حقول الفورم داخل المودال
