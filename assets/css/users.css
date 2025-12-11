@@ -1,0 +1,85 @@
+/* Modal Background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Box */
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  width: 350px;
+  border-radius: 8px;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 25px;
+  cursor: pointer;
+  color: #444;
+}
+
+/* Form Inputs */
+#editForm input, #editForm select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Save Button */
+.save-btn {
+  width: 100%;
+  padding: 10px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #219150;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Button styles */
+.btn.edit {
+  padding: 6px 14px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn.delete {
+  padding: 6px 14px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.table th, .table td {
+  padding: 10px;
+}

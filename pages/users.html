@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إدارة المستخدمين</title>
+
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="../assets/css/users.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="inner">
+        <div class="brand">لوحة التحكم</div>
+        <div class="nav-actions">إدارة المستخدمين</div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+      <div class="page-logo">
+        <img src="../assets/images/logo.png" alt="logo" />
+      </div>
+
+      <h2 style="text-align: center; margin-bottom: 25px">قائمة المستخدمين</h2>
+
+      <div class="card" style="max-width: 700px; width: 90%">
+        <table class="table" style="width: 100%; border-collapse: collapse">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>الاسم</th>
+              <th>البريد</th>
+              <th>النوع</th>
+              <th>إجراء</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody">
+            <tr>
+              <td colspan="5" style="text-align: center; padding: 20px">
+                جارٍ التحميل...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- Edit User Modal -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+
+        <h3 style="text-align: center; margin-bottom: 15px">تعديل المستخدم</h3>
+
+        <form id="editForm">
+          <input type="hidden" id="editUserId" />
+
+          <label>الاسم:</label>
+          <input type="text" id="editName" required />
+
+          <label>البريد الإلكتروني:</label>
+          <input type="email" id="editEmail" required />
+
+          <label>النوع:</label>
+          <select id="editType">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+
+          <button type="submit" class="btn save-btn">حفظ التعديلات</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- JS FILE -->
+    <script src="../assets/js/users.js"></script>
+  </body>
+</html>
