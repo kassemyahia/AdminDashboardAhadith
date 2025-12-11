@@ -15,7 +15,7 @@ body {
 }
 
 /* ----------------------------------------------------
-   الشريط العلوي الأسود
+   الشريط العلوي الأسود (في بعض الصفحات)
 ---------------------------------------------------- */
 .topbar {
   background: #000;
@@ -70,52 +70,48 @@ body {
 ---------------------------------------------------- */
 .container {
   display: flex;
-  flex-direction: column; /* NEW – المهم */
-  align-items: center;    /* NEW – لتمركز المحتوى */
-  padding: 40px 0;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px; /* FIXED */
+  margin-top: 10px;   /* FIXED */
   position: relative;
 }
 
-
-/* الشريط الزخرفي الجانبي */
+/* إزالة الشريط الزخرفي على اليمين */
 .container::before {
   content: "";
-  position: absolute;
-  right: 0;
-  width: 90px;
-  height: 100%;
-  /* background-image: url('../images/pattern.png'); ضع الصورة هنا */
-  background-size: cover;
-  background-repeat: no-repeat;
+  display: none !important;
 }
 
+/* ----------------------------------------------------
+   الشعار أعلى الصفحة (لصفحة الدخول)
+---------------------------------------------------- */
 .page-logo {
-    display: flex;
-    justify-content: center; /* يضع الشعار في المنتصف */
-    margin: 20px 0 40px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 40px;
 }
 
 .page-logo img {
-    width: 200px;      /* حجم مناسب */
-    max-width: 40vw;   /* يمنع التمدد على الشاشات الصغيرة */
-    height: auto;
-    object-fit: contain;
-    opacity: 0.92;     /* يعطي تأثير خفيف جميل */
-    border-radius: 12px;
+  width: 200px;
+  max-width: 40vw;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.92;
+  border-radius: 12px;
 }
-
 
 /* ----------------------------------------------------
    البطاقات
 ---------------------------------------------------- */
-
-/* الوضع الافتراضي: عمودي للموبايل */
 .cards {
-  width: 350px;
+  width: 100%;
+  max-width: 360px; /* FIXED for mobile */
   display: flex;
   flex-direction: column;
   gap: 25px;
   z-index: 2;
+  margin: 0 auto;
 }
 
 .card {
@@ -156,7 +152,7 @@ body {
 }
 
 /* ----------------------------------------------------
-   شاشات واسعة: البطاقات في صف واحد أفقي
+   الكمبيوتر: عرض أفقي للبطاقات
 ---------------------------------------------------- */
 @media (min-width: 900px) {
   .cards {
@@ -172,55 +168,26 @@ body {
 }
 
 /* ----------------------------------------------------
-   للموبايل: إخفاء الشريط الزخرفي
+   صفحة تسجيل الدخول — تصميم خاص
 ---------------------------------------------------- */
-@media (max-width: 600px) {
-  .container::before {
-    display: none;
-  }
-  .cards {
-    width: 85%;
-  }
-}
 
-/* ----------------------------------------------------
-   صفحة تسجيل الدخول — تنسيقات خاصة
----------------------------------------------------- */
-/* ===============================
-   إصلاحات خاصة لصفحة تسجيل الدخول
-   =============================== */
-
-/* container — center & remove side-strip effect */
-.container {
-  display: flex;
-  justify-content: center;
-  padding: 30px 15px;
-  position: relative;
-}
-
-.container::before {
-  display: none !important; /* يمنع الشريط الزخرفي من الضغط على الصفحة */
-}
-
-/* cards wrapper */
-.cards {
-  width: 100%;
-  max-width: 380px;    /* بدل الـ 350px الثابت */
-  margin: auto;
-}
-
-/* login card */
+/* صندوق تسجيل الدخول */
 .login-card {
   width: 100%;
   background: #f4dec9;
-  padding: 25px 20px;
-  border-radius: 12px;
+  padding: 20px 15px; /* FIXED */
+  border-radius: 14px;
   border: 1px solid #d2b48c;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
   text-align: center;
 }
 
-/* logo container */
+.login-card h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* الشعار داخل البطاقة */
 .login-logo {
   display: flex;
   justify-content: center;
@@ -228,48 +195,42 @@ body {
 }
 
 .login-logo img {
-  width: 90px;
+  width: 80px;
   max-width: 30vw;
+  height: auto;
+  object-fit: contain;
   opacity: 0.95;
 }
 
-/* labels + fields */
+/* الحقول */
 .login-form .field {
-  text-align: right;
   margin-bottom: 18px;
+  text-align: right;
 }
 
 .login-form label {
   font-size: 15px;
   font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
 }
 
+/* الإدخال */
 .login-input {
   width: 100%;
-  padding: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
   border: 1px solid #c9b08b;
-  border-radius: 8px;
   font-size: 16px;
   background: #fff;
   box-sizing: border-box;
 }
 
-/* login button */
+/* زر الدخول */
 .login-btn {
   width: 100%;
-  margin-top: 15px;
   padding: 12px;
+  margin-top: 10px;
+  border-radius: 12px;
   font-size: 18px;
 }
-
-/* mobile fine-tuning */
-@media (max-width: 480px) {
-  .login-card {
-    padding: 20px 15px;
-  }
-  .login-logo img {
-    width: 75px;
-  }
-}
-
-
