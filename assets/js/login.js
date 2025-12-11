@@ -1,6 +1,5 @@
 console.log("login.js loaded");
 
-// Make login globally accessible
 window.adminlogin = async function (event) {
   event.preventDefault();
   console.log("adminlogin() triggered!");
@@ -10,7 +9,7 @@ window.adminlogin = async function (event) {
 
   if (!loginValue || !password) {
     alert("يرجى إدخال البريد الإلكتروني أو اسم المستخدم وكلمة المرور");
-    return false; // STOP FORM SUBMISSION
+    return false;
   }
 
   try {
@@ -31,7 +30,7 @@ window.adminlogin = async function (event) {
 
     if (!response.ok) {
       alert(data.message || "خطأ في تسجيل الدخول");
-      return false; // IMPORTANT
+      return false;
     }
 
     if (!data.user || data.user.usertype !== "admin") {

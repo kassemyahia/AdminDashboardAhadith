@@ -8,14 +8,14 @@
   </head>
 
   <body>
-    <!-- زر التبديل -->
+
     <button id="themeToggle">الوضع الفاتح 🌞</button>
 
     <div class="layout">
       <aside>
         <div class="brand">
           <div class="logo">
-            <!-- <img src="../assets/images/pic1.png" alt=""> -->
+            
           </div>
           <h1>لوحة الإدارة</h1>
         </div>
@@ -61,7 +61,7 @@
           <h2 class="title">إدارة المحتوى</h2>
         </div>
 
-        <!-- تبويب: إضافة حديث -->
+       
         <section id="tab-hadiths" class="tab" aria-hidden="false">
           <div class="card grid">
             <h3>📜 إضافة حديث</h3>
@@ -79,15 +79,7 @@
                 ></textarea>
                 <div class="hint">احرص على دقة النص</div>
               </div>
-                <!-- 
-              <div class="field">
-                <label>النص بدون تشكيل (اختياري)</label>
-                <textarea
-                  name="textwithoutdiacritics"
-                  placeholder="إن وجد"
-                ></textarea>
-              </div> -->
-
+               
               <div class="field">
                 <label>نوع الحديث</label>
                 <select name="HadithType">
@@ -175,17 +167,6 @@
                   placeholder="قيمة عددية"
                 />
               </div>
-<!-- 
-              <div class="field">
-                <label>Admin (user_id)</label>
-                <input
-                  class="input"
-                  type="number"
-                  name="adminid"
-                  min="1"
-                  placeholder="ID حساب المدير"
-                />
-              </div> -->
 
         <div class="field">
                 <label>تسلسل السند</label>
@@ -204,7 +185,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة كتاب -->
         <section id="tab-books" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>📚 إضافة كتاب</h3>
@@ -229,17 +209,7 @@
                   name="muhaddith"
                   placeholder="مثال: الإمام البخاري"
                 />
-              <!-- </div>
-              <div class="field">
-                <label>عدد الأحاديث</label>
-                <input
-                  class="input"
-                  type="number"
-                  name="num_of_hadiths"
-                  min="0"
-                  value="0"
-                />
-              </div> -->
+         
               <div class="actions">
                 <button class="btn primary" type="submit">حفظ الكتاب</button>
                 <button class="btn ghost" type="reset">تفريغ</button>
@@ -248,7 +218,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة محدث/راوي -->
         <section id="tab-muhaddith" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>👳 إضافة محدث</h3>
@@ -332,7 +301,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة حكم حديث -->
         <section id="tab-rulings" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>⚖️ إضافة حكم حديث</h3>
@@ -358,7 +326,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة موضوع حديث -->
         <section id="tab-topics" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>🏷️ إضافة موضوع حديث</h3>
@@ -384,7 +351,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة شرح حديث -->
         <section id="tab-explainings" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>📝 إضافة شرح حديث</h3>
@@ -409,7 +375,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة حديث منتشر لا يصح -->
 <section id="tab-fake-hadiths" class="tab" aria-hidden="true">
   <div class="card grid">
     <h3>⚠️ إضافة حديث منتشر لا يصح</h3>
@@ -420,7 +385,6 @@
       onsubmit="handleSubmit(event, 'fakehadiths')"
     >
 
-      <!-- نص الحديث المنتشر -->
       <div class="field">
         <label>نص الحديث المنتشر</label>
         <textarea
@@ -469,7 +433,6 @@
       </main>
     </div>
 
-    <!-- Toast -->
     <div id="toast" class="toast" style="display: none">
       <div id="toastBox">تم الحفظ بنجاح ✅</div>
     </div>
@@ -478,7 +441,6 @@
       const token = localStorage.getItem("token");
 
       if (!token) {
-        // Not logged in → redirect to login page
         window.location.href = "../index.html";
       }
     </script>

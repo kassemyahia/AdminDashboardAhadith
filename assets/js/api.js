@@ -1,7 +1,3 @@
-// ======================================
-// UNIVERSAL API SYSTEM (GET/POST/PUT/DELETE)
-// ======================================
-
 const API_BASE = "https://apibykassem.onrender.com/api";
 // const API_BASE = "http://127.0.0.1:8000/api";
 async function api(method, endpoint, data = null) {
@@ -26,13 +22,11 @@ async function api(method, endpoint, data = null) {
   return json;
 }
 
-// Shortcuts
 const apiGet = (url) => api("GET", url);
 const apiPost = (url, data) => api("POST", url, data);
 const apiDelete = (url) => api("DELETE", url);
 const apiPut = (url, data) => api("PUT", url, data);
 
-// Toast
 function toast(msg) {
   const t = document.getElementById("toast");
   const b = document.getElementById("toastBox");

@@ -1,15 +1,8 @@
-// ======================================
-// EDIT + LOAD Resource Tables (with modal)
-// ======================================
-
-// ------------ Helper: filter sidebar buttons -------------
 function filterNav(q) {
   document.querySelectorAll("#nav .nav-btn").forEach((btn) => {
     btn.style.display = !q || btn.textContent.includes(q) ? "flex" : "none";
   });
 }
-
-// ------------ Resource → ID & display text maps ------------
 
 const resourceIdMap = {
   rawis: (item) => item.id,
@@ -33,7 +26,6 @@ const resourceDisplayMap = {
   fakehadiths: (item) => item.text || item.FakeHadithText,
 };
 
-// ------------ Dynamic edit config per resource ------------
 const editConfigs = {
   hadiths: {
     title: "تعديل حديث",
@@ -66,7 +58,6 @@ const editConfigs = {
       },
       { name: "Explaining", label: "الشرح (ID)", type: "number" },
 
-      // 👇 this is the SubValid column in DB
       { name: "sub_valid", label: "SubValid (ID)", type: "number" },
 
       { name: "SubValid", label: "SubValid (ID)", type: "number" },
@@ -78,32 +69,22 @@ const editConfigs = {
       HadithType: d.HadithType || "",
       HadithNumber: d.HadithNumber ?? "",
 
-      // Rawi ID
       Rawi: d.Rawi ?? d.rawi?.id ?? "",
 
-      // Book ID
       Source: d.Source ?? d.book?.id ?? "",
 
-      // Ruling of Muhaddith ID
       RulingOfMuhaddith: d.ruling_of_muhaddith?.id ?? d.RulingOfMuhaddith ?? "",
 
-      // Final ruling ID
       FinalRuling: d.final_ruling?.id ?? d.FinalRuling ?? "",
 
-      // Explaining ID
       Explaining: d.Explaining ?? d.explaining?.id ?? "",
 
-      // ⭐ SubValid value:
-      // 1) if API sends raw column: sub_valid
-      // 2) or camel/case variant: SubValid
-      // 3) or relation: subvalid: { id: 51, ... } OR [ { id: 51 } ]
       sub_valid:
         d.sub_valid ??
         d.SubValid ??
         (Array.isArray(d.subvalid) ? d.subvalid[0]?.id : d.subvalid?.id) ??
         "",
 
-      // Sanad
       Sanad: d.sanad || d.Sanad || "",
     }),
   },

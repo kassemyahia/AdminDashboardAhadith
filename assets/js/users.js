@@ -86,7 +86,6 @@ async function deleteUser(id, type) {
 
 loadUsers();
 
-// ========== MODAL FUNCTIONS ==========
 function openEditModal(id, name, email, type) {
   document.getElementById("editUserId").value = id;
   document.getElementById("editName").value = name;
@@ -100,7 +99,6 @@ function closeModal() {
   document.getElementById("editModal").style.display = "none";
 }
 
-// UPDATE USER
 document
   .getElementById("editForm")
   .addEventListener("submit", async function (e) {

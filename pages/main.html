@@ -7,17 +7,6 @@
     <link rel="stylesheet" href="../assets/css/main.css" />
   </head>
   <body>
-    <!-- <div class="topbar">
-      <div class="inner">
-        <div style="margin-left: auto; display: flex; gap: 8px">
-          <span class="icon-btn">ف</span>
-          <span class="icon-btn">ت</span>
-          <span class="icon-btn">و</span>
-          <span class="icon-btn">ي</span>
-        </div>
-      </div>
-    </div> -->
-
     <nav class="navbar">
       <div class="inner">
         <div class="brand">لوحة التحكم</div>
@@ -28,26 +17,6 @@
     </nav>
 
     <main class="container">
-      <!-- <div class="toolstrip" role="region" aria-label="شريط الأدوات">
-        <div class="tool-actions">
-          <div class="pill">الحديث كاملاً</div>
-          <div class="pill secondary">أ أ</div>
-          <div class="pill outline">إخفاء غريب المفردات</div>
-        </div>
-
-        <div class="search-wrap">
-          <div class="search-pill" role="search">
-            <input
-              class="search-input"
-              placeholder="البحث في الموسوعة بأي كلمة..."
-              aria-label="بحث"
-            />
-            <div style="width: 8px"></div>
-            <div class="search-icon">🔍</div>
-          </div>
-        </div>
-      </div> -->
-
       <section>
         <div class="page-logo">
           <img src="../assets/images/logo.png" alt="الموسوعة الحديثية" />
@@ -86,7 +55,6 @@
       const token = localStorage.getItem("token");
 
       if (!token) {
-        // Not logged in → redirect to login page
         window.location.href = "../index.html";
       }
     </script>

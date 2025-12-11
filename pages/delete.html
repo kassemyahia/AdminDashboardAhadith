@@ -8,7 +8,6 @@
   </head>
 
   <body>
-    <!-- زر التبديل -->
     <button id="themeToggle">الوضع الفاتح 🌞</button>
 
     <div class="layout">
@@ -86,7 +85,6 @@
           <h2 class="title">إدارة المحتوى</h2>
         </div>
 
-        <!-- تبويب: إضافة حديث -->
         <section id="tab-hadiths" class="tab" aria-hidden="false">
           <div class="card grid">
             <h3>📜 حذف حديث</h3>
@@ -104,7 +102,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة كتاب -->
         <section id="tab-books" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>📚 حذف كتاب</h3>
@@ -121,7 +118,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة محدث/راوي -->
         <section id="tab-muhaddith" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>👳 حذف محدث</h3>
@@ -156,7 +152,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة حكم حديث -->
         <section id="tab-rulings" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>⚖️ حذف حكم حديث</h3>
@@ -173,7 +168,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة موضوع حديث -->
         <section id="tab-topics" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>🏷️ حذف موضوع حديث</h3>
@@ -190,7 +184,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة شرح حديث -->
         <section id="tab-explainings" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>📝 حذف شرح حديث</h3>
@@ -207,7 +200,6 @@
           </div>
         </section>
 
-        <!-- تبويب: إضافة حديث منتشر لا يصح -->
         <section id="tab-fake-hadiths" class="tab" aria-hidden="true">
           <div class="card grid">
             <h3>⚠️ حذف حديث منتشر لا يصح</h3>
@@ -226,7 +218,6 @@
       </main>
     </div>
 
-    <!-- Toast -->
     <div id="toast" class="toast" style="display: none">
       <div id="toastBox">تم الحفظ بنجاح ✅</div>
     </div>
@@ -235,7 +226,6 @@
       const token = localStorage.getItem("token");
 
       if (!token) {
-        // Not logged in → redirect to login page
         window.location.href = "../index.html";
       }
     </script>

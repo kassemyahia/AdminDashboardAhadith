@@ -1,8 +1,3 @@
-// ======================================
-// Delete + Load Resource Tables ONLY
-// ======================================
-
-// Resource → ID field
 const resourceIdMap = {
   rawis: (item) => item.id,
   books: (item) => item.id,
@@ -14,7 +9,6 @@ const resourceIdMap = {
   fakehadiths: (item) => item.id,
 };
 
-// Resource → Display text field
 const resourceDisplayMap = {
   rawis: (item) => item.name,
   books: (item) => item.book_name,
@@ -23,15 +17,13 @@ const resourceDisplayMap = {
   ruling_of_hadiths: (item) => item.RulingText,
   topics: (item) => item.TopicName,
   explainings: (item) => item.ETEXT,
-  fakehadiths: (item) => item.text, // Laravel Resource renamed it!
+  fakehadiths: (item) => item.text,
 };
 
-// Load any resource (rawis, books, hadiths...)
 async function loadResource(resource) {
   try {
     const response = await apiGet(`/${resource}`);
 
-    // Normalize: some APIs return { data: [...] } others return [...]
     const list = Array.isArray(response) ? response : response.data || [];
 
     displayResource(resource, list);
@@ -40,7 +32,6 @@ async function loadResource(resource) {
   }
 }
 
-// Display the table
 function displayResource(resource, list) {
   const tbody = document.querySelector(`[data-body="${resource}"]`);
   if (!tbody) return;
@@ -70,7 +61,6 @@ function displayResource(resource, list) {
   });
 }
 
-// universal delete
 async function deleteItem(resource, id) {
   if (!confirm("هل تريد الحذف؟")) return;
 

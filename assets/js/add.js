@@ -1,10 +1,5 @@
-// ==========================
-// Create (Add) Operations
-// ==========================
-
 const baseURL = "https://apibykassem.onrender.com/api";
 
-// Generic request function
 async function request(method, path, body) {
   const opts = { method, headers: { Accept: "application/json" } };
 
@@ -27,7 +22,6 @@ async function request(method, path, body) {
   return data;
 }
 
-// Handle all form submissions
 async function handleSubmit(e, resource) {
   e.preventDefault();
   const form = e.target;
@@ -42,7 +36,6 @@ async function handleSubmit(e, resource) {
   }
 }
 
-// Toast message
 function toast(msg) {
   const t = document.getElementById("toast");
   const b = document.getElementById("toastBox");
