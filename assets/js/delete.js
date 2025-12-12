@@ -11,7 +11,7 @@ const resourceIdMap = {
 
 const resourceDisplayMap = {
   rawis: (item) => item.name,
-  books: (item) => item.book_name,
+  books: (item) => item.name,
   hadiths: (item) => item.HadithText,
   muhaddiths: (item) => item.name,
   ruling_of_hadiths: (item) => item.RulingText,

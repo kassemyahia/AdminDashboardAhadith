@@ -83,3 +83,10 @@
 .table th, .table td {
   padding: 10px;
 }
+
+
+.table-wrapper {
+  background-color: #f4dec9;
+  padding: 16px;          /* space around the table */
+  border-radius: 8px;     /* optional */
+}

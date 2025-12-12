@@ -17,7 +17,7 @@ const resourceIdMap = {
 
 const resourceDisplayMap = {
   rawis: (item) => item.name,
-  books: (item) => item.book_name,
+  books: (item) => item.name || item.book_name,
   hadiths: (item) => item.HadithText,
   muhaddiths: (item) => item.name,
   ruling_of_hadiths: (item) => item.RulingText,
@@ -93,12 +93,10 @@ const editConfigs = {
     title: "تعديل كتاب",
     fields: [
       { name: "book_name", label: "اسم الكتاب", type: "text" },
-      { name: "book_name", label: "اسم الكتاب", type: "text" },
       { name: "muhaddith", label: "المحدّث (نص أو ID)", type: "text" },
     ],
     mapData: (d) => ({
-      book_name: d.book_name || "",
-      book_name: d.book_name || "",
+      book_name: d.name || d.book_name || "",
       muhaddith: d.muhaddith ?? d.muhaddith_name ?? "",
     }),
   },
