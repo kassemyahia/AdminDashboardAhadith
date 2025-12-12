@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>تسجيل الدخول</title>
-    <link rel="stylesheet" href="assets/css/main.css" />
-  </head>
 
-  <body>
-    <nav class="navbar">
-      <div class="inner">
-        <div class="brand">لوحة التحكم</div>
-        <div class="nav-actions">الموسوعة الحديثية</div>
-      </div>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
 
-    <main class="container">
-      <div class="cards" style="width: 350px">
-        <div class="login-card">
-          <div class="login-logo">
-            <img src="assets/images/logo.png" alt="الموسوعة الحديثية" />
+<body>
+  <nav class="navbar">
+    <div class="inner">
+      <div class="brand">لوحة التحكم</div>
+      <div class="nav-actions">الموسوعة الحديثية</div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="cards">
+      <div class="login-card">
+        <div class="login-logo">
+          <img src="assets/images/logo.png" alt="الموسوعة الحديثية" />
+        </div>
+
+        <h3>تسجيل الدخول</h3>
+
+        <form class="login-form" onsubmit="return adminlogin(event)">
+          <div class="field">
+            <label>البريد الإلكتروني أو اسم المستخدم</label>
+            <input type="text" name="login" class="login-input" required />
           </div>
 
-          <h3>تسجيل الدخول</h3>
+          <div class="field">
+            <label>كلمة المرور</label>
+            <input type="password" name="password" class="login-input" required />
+          </div>
 
-          <form class="login-form" onsubmit="return adminlogin(event)">
-            <div class="field">
-              <label>البريد الإلكتروني أو اسم المستخدم</label>
-              <input type="text" name="login" class="login-input" required />
-            </div>
-
-            <div class="field">
-              <label>كلمة المرور</label>
-              <input
-                type="password"
-                name="password"
-                class="login-input"
-                required
-              />
-            </div>
-
-            <button type="submit" class="btn add login-btn">دخول</button>
-          </form>
-        </div>
+          <button type="submit" class="btn add login-btn">دخول</button>
+        </form>
+        <p class="copy">© جميع الحقوق محفوظة للموسوعة الحديثية 2025</p>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <script src="assets/js/login.js" defer></script>
-  </body>
+  <script src="assets/js/login.js" defer></script>
+</body>
+
 </html>

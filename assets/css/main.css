@@ -6,8 +6,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Cairo", sans-serif;
-  background: #f7e9dd; /* الخلفية الوردية */
+  font-family: "Tajawal", sans-serif;
+  background: #f7e9dd;
+  /* الخلفية الوردية */
   color: #5a4228;
   min-height: 100vh;
   display: flex;
@@ -72,8 +73,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 10px; /* FIXED */
-  margin-top: 10px;   /* FIXED */
+  padding: 20px 10px;
+  /* FIXED */
+  margin-top: 10px;
+  /* FIXED */
   position: relative;
 }
 
@@ -106,19 +109,29 @@ body {
 ---------------------------------------------------- */
 .cards {
   width: 100%;
-  max-width: 360px; /* FIXED for mobile */
+  max-width: 420px;
+  /* عرض مناسب للّاب والشاشات الكبيرة */
+  margin: 0 auto;
+  /*กลาง الشاشة */
   display: flex;
   flex-direction: column;
   gap: 25px;
   z-index: 2;
-  margin: 0 auto;
 }
+
+/* حجم أصغر للموبايل فقط */
+@media (max-width: 480px) {
+  .cards {
+    max-width: 360px;
+  }
+}
+
 
 .card {
   background: #f4dec9;
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   border: 1px solid #d2b48c;
 }
@@ -151,6 +164,11 @@ body {
   color: #fff;
 }
 
+.btn.add:active {
+  background-color: #5a4228;
+  color: #fff;
+}
+
 /* ----------------------------------------------------
    الكمبيوتر: عرض أفقي للبطاقات
 ---------------------------------------------------- */
@@ -175,10 +193,11 @@ body {
 .login-card {
   width: 100%;
   background: #f4dec9;
-  padding: 20px 15px; /* FIXED */
+  padding: 20px 15px;
+  /* FIXED */
   border-radius: 14px;
   border: 1px solid #d2b48c;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 
@@ -233,4 +252,11 @@ body {
   margin-top: 10px;
   border-radius: 12px;
   font-size: 18px;
+}
+
+/* الحقوق */
+.copy {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #8f7a52;
 }
