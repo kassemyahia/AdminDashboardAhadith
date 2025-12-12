@@ -116,7 +116,7 @@ body {
 
 .card {
   background: #f4dec9;
-  /* padding: 25px; */
+  padding: 25px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
@@ -233,4 +233,12 @@ body {
   margin-top: 10px;
   border-radius: 12px;
   font-size: 18px;
+}
+
+
+/* الحقوق */
+.copy {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #8f7a52;
 }
