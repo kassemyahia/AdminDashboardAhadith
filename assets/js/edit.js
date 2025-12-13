@@ -195,14 +195,27 @@ const editConfigs = {
   fakehadiths: {
     title: "تعديل حديث غير صحيح",
     fields: [
-      { name: "FakeHadithText", label: "نص الحديث", type: "textarea" },
-      { name: "SubValid", label: "الحديث الصحيح البديل (ID)", type: "number" },
-      { name: "Ruling", label: "حكم الحديث (ID)", type: "number" },
+      {
+        name: "text",
+        label: "نص الحديث",
+        type: "textarea",
+      },
+      {
+        name: "sub_valid",
+        label: "الحديث الصحيح البديل (ID)",
+        type: "number",
+      },
+      {
+        name: "ruling",
+        label: "حكم الحديث (ID)",
+        type: "number",
+      },
     ],
+
     mapData: (d) => ({
-      FakeHadithText: d.FakeHadithText || "",
-      SubValid: d.SubValid ?? "",
-      Ruling: d.Ruling ?? "",
+      text: d.text || "",
+      sub_valid: d.sub_valid?.id ?? "",
+      ruling: d.ruling?.id ?? "",
     }),
   },
 };
@@ -290,9 +303,11 @@ function buildEditFields(fields, values) {
   fields.forEach((f) => {
     const div = document.createElement("div");
     div.className = "field";
+    const inputId = `edit-${f.name}`;
 
     const label = document.createElement("label");
     label.textContent = f.label;
+    label.setAttribute("for", inputId);
     div.appendChild(label);
 
     let input;
@@ -313,6 +328,7 @@ function buildEditFields(fields, values) {
     }
 
     input.className = "input";
+    input.id = inputId;
     input.name = f.name;
     input.value = values[f.name] ?? "";
 

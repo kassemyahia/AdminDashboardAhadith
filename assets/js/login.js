@@ -2,15 +2,25 @@ console.log("login.js loaded");
 
 window.adminlogin = async function (event) {
   event.preventDefault();
-  console.log("adminlogin() triggered!");
 
-  const loginValue = document.querySelector("input[name=login]").value.trim();
-  const password = document.querySelector("input[name=password]").value.trim();
+  const btnText = document.getElementById("loginText");
+  const loader = document.getElementById("loginLoader");
+  const btn = document.getElementById("loginBtn");
+
+  const loginValue = document.querySelector('input[name="login"]').value.trim();
+  const password = document
+    .querySelector('input[name="password"]')
+    .value.trim();
 
   if (!loginValue || !password) {
     alert("يرجى إدخال البريد الإلكتروني أو اسم المستخدم وكلمة المرور");
     return false;
   }
+
+  // إظهار التحميل
+  btnText.style.display = "none";
+  loader.style.display = "inline-block";
+  btn.disabled = true;
 
   try {
     const response = await fetch("https://apibykassem.onrender.com/api/login", {
@@ -29,22 +39,25 @@ window.adminlogin = async function (event) {
     console.log("API Response:", data);
 
     if (!response.ok) {
-      alert(data.message || "خطأ في تسجيل الدخول");
-      return false;
+      throw new Error(data.message || "خطأ في تسجيل الدخول");
     }
 
     if (!data.user || data.user.usertype !== "admin") {
-      alert("غير مصرح لك بالدخول ❌");
-      return false;
+      throw new Error("غير مصرح لك بالدخول ❌");
     }
 
     localStorage.setItem("token", data.token);
 
     window.location.href = "pages/main.html";
-    return false;
   } catch (error) {
     console.error("Login error:", error);
-    alert("فشل الاتصال بالخادم");
-    return false;
+    alert(error.message || "فشل الاتصال بالخادم");
+
+    // إعادة الزر لوضعه الطبيعي
+    btnText.style.display = "inline";
+    loader.style.display = "none";
+    btn.disabled = false;
   }
+
+  return false;
 };
