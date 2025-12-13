@@ -64,6 +64,14 @@
 
           <button
             class="nav-btn"
+            data-tab="tab-topic-classes"
+            data-resource="topic_classes"
+          >
+            🔗 حذف ربط موضوع بحديث <span class="badge">TC</span>
+          </button>
+
+          <button
+            class="nav-btn"
             data-tab="tab-explainings"
             data-resource="explainings"
           >
@@ -180,6 +188,25 @@
                 </tr>
               </thead>
               <tbody data-body="topics"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="tab-topic-classes" class="tab" aria-hidden="true">
+          <div class="card grid">
+            <h3>🔗 حذف ربط موضوع بحديث</h3>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>ID الموضوع</th>
+                  <th>ID الحديث</th>
+                  <th>حذف</th>
+                </tr>
+              </thead>
+
+              <tbody data-body="topic_classes"></tbody>
             </table>
           </div>
         </section>

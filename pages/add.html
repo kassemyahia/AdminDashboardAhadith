@@ -47,6 +47,9 @@
           <button class="nav-btn" data-tab="tab-topics">
             🏷️ إضافة موضوع حديث <span class="badge">T</span>
           </button>
+          <button class="nav-btn" data-tab="tab-topics-hadiths">
+            🔗 إضافة ربط موضوع حديث <span class="badge">T</span>
+          </button>
           <button class="nav-btn" data-tab="tab-explainings">
             📝 إضافة شرح حديث <span class="badge">E</span>
           </button>
@@ -350,6 +353,44 @@
             </form>
           </div>
         </section>
+
+        <section id="tab-topics-hadiths" class="tab" aria-hidden="true">
+  <div class="card grid">
+    <h3>🔗 ربط موضوع بحديث</h3>
+
+    <form
+      class="grid cols-2"
+      onsubmit="handleSubmit(event, 'topic_classes')"
+    >
+      <div class="field">
+        <label>ID الموضوع</label>
+        <input
+          class="input"
+          type="number"
+          name="TopicID"
+          required
+          placeholder="مثال: 3"
+        />
+      </div>
+
+      <div class="field">
+        <label>ID الحديث</label>
+        <input
+          class="input"
+          type="number"
+          name="HadithID"
+          required
+          placeholder="مثال: 25"
+        />
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" type="submit">حفظ الربط</button>
+        <button class="btn ghost" type="reset">تفريغ</button>
+      </div>
+    </form>
+  </div>
+</section>
 
         <section id="tab-explainings" class="tab" aria-hidden="true">
           <div class="card grid">
